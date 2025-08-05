@@ -12,7 +12,11 @@ app.use(express.text())
 
 const corsOptions: cors.CorsOptions = {
     origin: ["http://localhost:5173", "https://oz-play.vercel.app"],
-    methods: ["POST"]
+    methods: ["POST"],
+    allowedHeaders: ["Content-Type"]
+    // origin: "*",
+    // methods: ["GET", "POST"]
+
 }
 app.use(cors(corsOptions))
 
