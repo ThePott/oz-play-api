@@ -11,14 +11,15 @@ app.use(express.json())
 app.use(express.text())
 
 const corsOptions: cors.CorsOptions = {
-    origin: ["http://localhost:5173", "https://oz-play.vercel.app"],
-    methods: ["POST"],
-    allowedHeaders: ["Content-Type"]
-    // origin: "*",
-    // methods: ["GET", "POST"]
-
+    // origin: ["http://localhost:5173", "https://oz-play.vercel.app"],
+    // methods: ["POST"],
+    allowedHeaders: ["Content-Type"],
+    origin: "*",
+    methods: ["GET", "POST"],
 }
 app.use(cors(corsOptions))
+
+app.get("/", (req, res) => res.send("Welcome!"))
 
 app.post("/tmdb", async (req, res) => {
     try {
