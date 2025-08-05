@@ -12,24 +12,20 @@ app.use(express.text())
 
 const corsOptions: cors.CorsOptions = {
     origin: ["http://localhost:5173"],
-    methods: ["OPTIONS", "GET", "POST", "PATCH", "DELETE"]
+    methods: ["POST"]
 }
 app.use(cors(corsOptions))
 
 app.post("/tmdb", async (req, res) => {
-    const url = req.body
-    const response = await axios.get(url, {headers: { "Authorization": `Bearer ${tmdbAccessToken}`}})
-    const json = response.data.results ? response.data.results : response.data
-    res.status(200).json(json)
+    try {
+        const url = req.body
+        const response = await axios.get(url, { headers: { "Authorization": `Bearer ${tmdbAccessToken}` } })
+        const json = response.data.results ? response.data.results : response.data
+        res.status(200).json(json)
+    } catch (error) {
+        res.status(400).json(error)
+    }
 })
-
-app.get("/supabase/sign-up", (req, res) => { res.status(200).send("---- so far so good") })
-app.get("/supabase/sign-in-with-email", (req, res) => { res.status(200).send("---- so far so good") })
-app.get("/supabase/sign-out", (req, res) => { res.status(200).send("---- so far so good") })
-app.get("/supabase/sign-in-with-provider", (req, res) => { res.status(200).send("---- so far so good") })
-app.get("/supabase/get-user", (req, res) => { res.status(200).send("---- so far so good") })
-app.get("/supabase/add-favorite", (req, res) => { res.status(200).send("---- so far so good") })
-app.get("/supabase/delete-favorite", (req, res) => { res.status(200).send("---- so far so good") })
 
 const port = process.env.PORT || 3456
 app.listen(port, () => console.log(`server is on port: ${port}`))
