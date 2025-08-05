@@ -24,11 +24,13 @@ app.get("/", (req, res) => res.send("Welcome!"))
 app.post("/tmdb", async (req, res) => {
     try {
         const url = req.body
+        console.log("---- url:", url)
         const response = await axios.get(url, { headers: { "Authorization": `Bearer ${tmdbAccessToken}` } })
         const json = response.data.results ? response.data.results : response.data
         res.status(200).json(json)
     } catch (error) {
-        res.status(400).json(error)
+        console.error("----error when post", error)
+        res.status(400).json({message: "----ERROR OCCURRED!", error})
     }
 })
 
