@@ -8,6 +8,9 @@ https://oz-play.vercel.app
 or source code for frontend.
 https://github.com/ThePott/oz-play
 
+<img width="870" height="973" alt="image" src="https://github.com/user-attachments/assets/76721820-b7fb-4b47-a446-a0587d8c8eee" />
+
+
 ## ✨ Main Feature
 1. Fetch data from TMDB as request of client
 
